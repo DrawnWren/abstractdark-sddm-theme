@@ -1,12 +1,13 @@
 EXTRA_DIST = \
-	$(srcdir)/abstractdark \
-  $(srcdir)/README.md
+$(srcdir)/theme \
+ $(srcdir)/README.md
+
+
+install-hook: \
+test -d $(DESTDIR)$(datadir) || $(MKDIR_P) $(DESTDIR)$(datadir) ; \
+cp -Rv $(srcdir)/theme $(DESTDIR)$(datadir)
 
 themedir = $(datadir)/theme
 
-install-data-hook:
-	test -d $(DESTDIR)$(themedir) || $(MKDIR_P) $(DESTDIR)$(themedir)
-	cp -Rv $(srcdir)/abstractdark $(DESTDIR)$(themedir)/.
-
-uninstall-hook:
-	test -d $(DESTDIR)$(themedir)/abstractdark || rm -rf $(DESTDIR)$(themedir)/abstractdark
+uninstall-hook: \
+Test -d $(DESTDIR)$(themedir) && rm -rf $(DESTDIR)$(themedir)
